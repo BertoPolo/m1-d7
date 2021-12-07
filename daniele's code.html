@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <title>Accessing Elements in the DOM</title>
+
+
+    <style>
+      html {
+        font-family: sans-serif;
+        color: #333;
+      }
+      body {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+      div div,
+      div article {
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #dedede;
+      }
+
+      .selected {
+        color: orange;
+        border-radius: 6px;
+        border-width: 2px;
+        border-color: orange;
+        border-style: solid;
+        padding: 4px;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+
+
+  <body>
+    <h1>Accessing Elements in the DOM</h1>
+
+    <input type="button" onclick="setHeaderClass()" value="Set header class" />
+
+    <button id="toggle-button" onclick="toggleAllHeadersClass()">Toggle all the H2 classes</button>
+
+    <button onclick="createNewElement()">Create new element</button>
+
+    <div>
+      <h2 id="demo-id">ID (#demo-id)</h2>
+      <div>Access me by ID</div>
+    </div>
+
+
+    <div>
+      <h2>Class (.demo-class)</h2>
+      <div class="demo-class">Access me by class (1)</div>
+      <div class="demo-class">Access me by class (2)</div>
+    </div>
+
+
+    <div>
+      <h2>Tag (article)</h2>
+      <div id="article-container">
+        <article>Access me by tag (1)</article>
+        <article>Access me by tag (2)</article>
+      </div>
+    </div>
+
+
+    <div id="demo-query">
+      <h2>Query Selector</h2>
+      <div>Access me by query</div>
+    </div>
+
+
+    <div>
+      <h2>Query Selector All</h2>
+      <div class="demo-query-all">Access me by query all (1)</div>
+      <div class="demo-query-all">Access me by query all (2)</div>
+    </div>
+
+
+    <h2>A more complex query</h2>
+    <div id="more-complex">
+      <ul>
+        <li>First element inside a list</li>
+        <li>Second element inside a list</li>
+        <li>Third element inside a list</li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+
+      const setHeaderClass = function() {
+
+        // First step: finding the "demo-id" element in the page
+        let demoIdNode = document.getElementById("demo-id")
+        
+        // Second step: add the "selected" class to it
+        demoIdNode.classList.toggle("selected")
+      }
+     
+      const toggleAllHeadersClass = function() {
+
+        // First step: find all the H2 elements in our page
+        let headerNodes = document.getElementsByTagName("h2")
+
+        // Second step: toggle the "selected" class on them
+        for (let headerNode of headerNodes) {
+          headerNode.classList.toggle("selected")
+        }
+
+        /* The alternative above is just SYNTACTIC SUGAR
+        that is more concise than the alternative below
+
+        for (let i = 0; i < headerNodes.length; i++) {
+          let headerNode = headerNodes[i]
+
+          headerNode.classList.toggle("selected")
+        }*/
+      }
+
+
+      const createNewElement = function() {
+
+        let creationButton = document.getElementById("toggle-button")
+
+        // HERE WE ARE CREATING A NEW HTML NODE / HTML ELEMENT (DYNAMICALLY)
+        // It will only live IN MEMORY, and it will be destroyed as soon as we exit the function
+        // UNLESS we attach it to some other PARENT in the DOM
+
+        let newElementNode = document.createElement("div")
+        // <div></div>
+
+        newElementNode.innerText = "Hi, I'm the new guy here"
+        // <div>Hi, I'm the new guy here</div>
+
+        newElementNode.style.color = "coral"
+        // <div style="color:coral;">Hi, I'm the new guy here</div>
+
+        // WE NOW ATTACH / APPEND THE NEWLY CREATED ELEMENT TO THE DOM
+        // From now on, it will show up in the page
+
+        // First step: find its new parent
+        let parentNode = document.getElementById("demo-id")
+
+        // Second step: attach the newly created element to that parent
+        parentNode.appendChild(newElementNode)
+
+
+        // WE NOW WANT TO REMOVE THE CLICKED BUTTON
+        
+        // Step 1: select the button to be removed
+        let buttonToBeRemoved = document.getElementById("toggle-button")
+
+        // Step 2: remove the button
+        //buttonToBeRemoved.remove()
+        //buttonToBeRemoved.hidden = !buttonToBeRemoved.hidden
+        //buttonToBeRemoved.style.display = "none"
+        buttonToBeRemoved.classList.toggle("hidden")
+      }
+
+    </script>
+  </body>
+</html> 
