@@ -166,5 +166,15 @@
       }
 
     </script>
+    ⚠️  REMINDER: @FS-Nov21 & @FE-Nov21! ⚠️ 
+
+    Pay attention to WHAT the .getElementByXYZ functions return!
+    
+    - .getElementById and .querySelector will return a SINGLE HTML NODE, that you can modify immediately
+    
+    - .getElementsByClassName, .getElementsByTagName and .querySelectorAll will return a COLLECTION OF HTML NODES: you cannot change properties like .innerText or .style.color directly on them.
+    You'll have either to use a for loop (to modify every matching element) or the square brackets [N] to access a specific index element at position N
+
+    
   </body>
 </html> 
