@@ -33,7 +33,18 @@
             color:rgba(0, 0, 0, 0.678)
         }
 
+        /* -----javascript class changes start----- */
+
+       .h1changed{
+           color: red;
+       }
+
+       .bgfunc{
+           background: rgb(163, 161, 43);
+       }
+
        
+       /* -----javascript class changes end----- */
 
     </style>
 </head>
@@ -94,11 +105,15 @@
     
 </section>
 
+<hr style="width: 50%;">
 
 <div class="suggestions">
-        <h3>Suggestions</h3>
+        <h2>Suggestions</h2>
     <textarea name="" id="" cols="60" rows="10"placeholder="Write here your suggestions,plaese"></textarea>
+    <br>
+    <button style="width: 100px;" >Send</button>
 </div>
+<br>
 
 <footer>
     <p>Wind Maker's Shop</p>
@@ -111,9 +126,9 @@
 <script>
 
 /* 
-EX7: Write a function to change the h1 text to something else
+--EX7: Write a function to change the h1 text to something else
 
-EX8: Write a function to change the page background color
+--EX8: Write a function to change the page background color
 
 EX9: Write a function to change the footer address with a fake one
 
@@ -123,6 +138,28 @@ EX11: Write a function to toggle a CSS class for all the images in the table; th
 
 EX12: Write a function to color the price of the products in a different one every time it's invoked  */
 
+const h1Changer = function(){
+
+    const h1Node = document.getElementsByTagName("h1")
+
+    h1Node.classList.toggle("h1changed")
+}
+
+
+const bgchanger = function(){
+
+    const changerNode = document.getElementsByTagName("body")
+
+    changerNode.classList.toggle("bgfunc")
+}
+
+
+const fakeAdressFunc = function(){
+
+    const faker = document.getElementsByTagName("footer")
+
+    faker.innerText = "Broken Wings Shop. Adress : Paris,France, Headache street 99"
+}
 
 
 </script>
