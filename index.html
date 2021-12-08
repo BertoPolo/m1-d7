@@ -19,8 +19,9 @@
 
         .images{
             width: 50px;
-            margin-top: 3rem;
-                   }
+            
+           }
+
         footer{
             background: rgba(0, 0, 0, 0.678);
             color: rgb(217, 220, 223);
@@ -49,6 +50,7 @@
         .price{
             border-color: seashell;
             border-radius: 80%;
+            bottom: 0;
         }
 
         /* -----javascript class changes start----- */
@@ -224,13 +226,32 @@ const classAdder = function(){
     adderNode.classList.toggle("addedClass")
 }
 
+generateRandomColor()
 
-// const priceColorFunc = function(){
+const priceColorFunc = function(){
 
-//     const priceNodes = document.getElementsByClassName("price")
-//     for(priceNode of priceNodes)
-//     priceNode.classList.toggle("priceColorNow")
-// }
+    const priceNodes = document.getElementsByClassName("price")
+    const randomColor = generateRandomColor()
+    for(priceNode of priceNodes) {
+        priceNode.style.backgroundColor = randomColor
+    }
+
+}
+
+const random255 = () => {
+    return Math.round(Math.random() * 255)
+}
+
+const generateRandomColor = function() {
+    // rgb(255,255,255)
+    const red = random255()
+    const green = random255()
+    const blue = random255()
+
+    return `rgb(${red}, ${green}, ${blue})`
+}
+
+
 
 
 </script>
